@@ -1,102 +1,284 @@
-// Pest Control Services Data
+// Services and Products Data
 const services = [
   {
     id: 1,
-    name: "Fumigación de Termitas",
-    description: "Control completo de termitas y plagas de madera",
-    image: "https://images.unsplash.com/photo-1584262173688-82c6cb5e2a27?w=400&h=400&fit=crop",
-    features: ["Inspección profunda", "Tratamiento profesional", "Garantía 6 meses"],
-    price: 150,
+    name: "Desinsectación",
+    description:
+      "Control completo de plagas de insectos - Cucarachas, hormigas, chinches, moscas, zancudos y mosquitos",
+    options: [
+      "Cucarachas",
+      "Hormigas",
+      "Chinches",
+      "Moscas",
+      "Zancudos",
+      "Mosquitos",
+    ],
+    image:
+      "https://images.unsplash.com/photo-1626314408456-5edc1ad76f0f?w=400&h=400&fit=crop",
+    type: "service",
   },
   {
     id: 2,
-    name: "Control de Roedores",
-    description: "Eliminación de ratones y ratas con métodos seguros",
-    image: "https://images.unsplash.com/photo-1585509944149-53fc0a4a6d7e?w=400&h=400&fit=crop",
-    features: ["Trampas profesionales", "Sellado de grietas", "Seguimiento mensual"],
-    price: 120,
+    name: "Roedorización",
+    description:
+      "Eliminación de roedores y plagas con métodos profesionales y seguros",
+    options: ["Roedor doméstico", "Rata de tejado", "Rata de drenajes"],
+    image:
+      "https://images.unsplash.com/photo-1585509944149-53fc0a4a6d7e?w=400&h=400&fit=crop",
+    type: "service",
   },
   {
     id: 3,
-    name: "Eliminación de Chinches",
-    description: "Tratamiento especializado para chinches de cama",
-    image: "https://images.unsplash.com/photo-1626314408456-5edc1ad76f0f?w=400&h=400&fit=crop",
-    features: ["Análisis del área", "Tratamiento químico", "Revisión post-tratamiento"],
-    price: 180,
+    name: "Sanitización",
+    description:
+      "Servicio de limpieza y desinfección profesional para espacios saludables",
+    options: [
+      "Lavado de tanques",
+      "Eliminación de mohos",
+      "Eliminación de virus y levaduras",
+    ],
+    image:
+      "https://images.unsplash.com/photo-1584308666744-24d5f15714ae?w=400&h=400&fit=crop",
+    type: "service",
+  },
+];
+
+const products = [
+  {
+    id: 101,
+    name: "Polaryn",
+    description:
+      "Trampa líquida que actúa sobre insectos de cuerpo duro como Hormigas, cucarachas y chinches",
+    presentation: "500 ml",
+    price: 35000,
+    image:
+      "https://images.unsplash.com/photo-1584262173688-82c6cb5e2a27?w=400&h=400&fit=crop",
+    type: "product",
   },
   {
-    id: 4,
-    name: "Control de Mosquitos",
-    description: "Protección contra mosquitos y dengue",
-    image: "https://images.unsplash.com/photo-1598081502899-a5d35b2a4a7f?w=400&h=400&fit=crop",
-    features: ["Fumigación perimetral", "Eliminación de criaderos", "Protección familiar"],
-    price: 100,
+    id: 102,
+    name: "Bioplus",
+    description:
+      "Bioreparador que elimina materia orgánica, reduce la presencia de mohos, grasa adherida a superficies y presencia de insectos voladores",
+    presentation: "500 ml",
+    price: 25000,
+    image:
+      "https://images.unsplash.com/photo-1616763355603-ba4f8a466ae6?w=400&h=400&fit=crop",
+    type: "product",
   },
   {
-    id: 5,
-    name: "Control de Cucarachas",
-    description: "Eliminación completa de cucarachas e insectos",
-    image: "https://images.unsplash.com/photo-1618944412213-1e00e1b50e00?w=400&h=400&fit=crop",
-    features: ["Tratamiento integral", "Productos seguros", "Visitas de seguimiento"],
-    price: 130,
-  },
-  {
-    id: 6,
-    name: "Inspección y Diagnóstico",
-    description: "Inspección profesional de plagas",
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=400&fit=crop",
-    features: ["Análisis exhaustivo", "Reporte detallado", "Plan de acción"],
-    price: 80,
+    id: 103,
+    name: "Jaziz Smart",
+    description:
+      "Sistema de detección electrónica de roedores para monitoreo permanente",
+    image:
+      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=400&fit=crop",
+    type: "product",
   },
 ];
 
 // Cart Management
 let cart = [];
 
+// DOM Elements
+const servicesGrid = document.getElementById("servicesGrid");
+const productsGrid = document.getElementById("productsGrid");
+const cartBtn = document.getElementById("cartBtn");
+const closeCartBtn = document.getElementById("closeCartBtn");
+const cartModal = document.getElementById("cartModal");
+const cartOverlay = document.getElementById("cartOverlay");
+const cartBody = document.getElementById("cartBody");
+const cartFooter = document.getElementById("cartFooter");
+const cartCount = document.getElementById("cartCount");
+const notification = document.getElementById("notification");
+const whatsappBtn = document.getElementById("whatsappBtn");
+const qrBtn = document.getElementById("qrBtn");
+const qrModal = document.getElementById("qrModal");
+const closeQrBtn = document.getElementById("closeQrBtn");
+const qrOverlay = document.getElementById("qrOverlay");
+
+// Initialize App
+document.addEventListener("DOMContentLoaded", () => {
+  renderServices();
+  renderProducts();
+  setupEventListeners();
+});
+
+// Render Services
 function renderServices() {
-  const servicesGrid = document.getElementById("servicesGrid");
-  servicesGrid.innerHTML = services.map((service) => `
-    <div class="service-card">
-      <div class="service-image">
-        <img src="${service.image}" alt="${service.name}" onerror="this.style.display='none'">
-      </div>
-      <div class="service-content">
-        <h3 class="service-name">${service.name}</h3>
-        <p class="service-description">${service.description}</p>
-        <ul class="service-features">
-          ${service.features.map((feature) => `<li>${feature}</li>`).join("")}
+  servicesGrid.innerHTML = services
+    .map(
+      (service) => `
+    <div class="card">
+      <img src="${service.image}" alt="${service.name}" class="card-image">
+      <div class="card-content">
+        <h4 class="card-title">${service.name}</h4>
+        <p class="card-description">${service.description}</p>
+        <ul class="card-features">
+          ${service.options.map((option) => `<li>${option}</li>`).join("")}
         </ul>
-        <div class="service-footer">
-          <div class="service-price-section">
-            <span class="price-label">Precio</span>
-            <span class="price-value">$${service.price}</span>
+        <button onclick="addToCart(${service.id}, 'service')" class="add-btn">
+          Agregar
+        </button>
+      </div>
+    </div>
+  `
+    )
+    .join("");
+}
+
+// Render Products
+function renderProducts() {
+  productsGrid.innerHTML = products
+    .map(
+      (product) => `
+    <div class="card">
+      <img src="${product.image}" alt="${product.name}" class="card-image">
+      <div class="card-content">
+        <h4 class="card-title">${product.name}</h4>
+        ${
+          product.presentation
+            ? `<p class="card-presentation">${product.presentation}</p>`
+            : ""
+        }
+        <p class="card-description">${product.description}</p>
+        <div class="card-footer">
+          <div class="price-section">
+            ${
+              product.price
+                ? `
+              <p class="price-label">Precio</p>
+              <p class="price-value">$${product.price.toLocaleString("es-CO")}</p>
+            `
+                : `<p class="price-consult">Precio a consultar</p>`
+            }
           </div>
-          <button class="add-to-cart-btn" onclick="addToCart(${service.id})">Agregar</button>
+          <button onclick="addToCart(${product.id}, 'product')" class="add-btn">
+            Agregar
+          </button>
         </div>
       </div>
     </div>
-  `).join("");
+  `
+    )
+    .join("");
 }
 
-function addToCart(serviceId) {
-  const service = services.find((s) => s.id === serviceId);
-  const existingItem = cart.find((item) => item.id === serviceId);
+// Add to Cart
+function addToCart(itemId, type) {
+  const items = type === "service" ? services : products;
+  const item = items.find((i) => i.id === itemId);
+
+  const existingItem = cart.find((cartItem) => cartItem.id === itemId);
 
   if (existingItem) {
     existingItem.quantity++;
   } else {
     cart.push({
-      ...service,
+      ...item,
       quantity: 1,
     });
   }
 
   updateCart();
-  showNotification(`${service.name} agregado al carrito`);
+  showNotification(`${item.name} agregado al carrito`);
 }
 
+// Remove from Cart
+function removeFromCart(itemId) {
+  cart = cart.filter((item) => item.id !== itemId);
+  updateCart();
+}
+
+// Update Quantity
+function updateQuantity(itemId, quantity) {
+  if (quantity <= 0) {
+    removeFromCart(itemId);
+    return;
+  }
+
+  const item = cart.find((cartItem) => cartItem.id === itemId);
+  if (item) {
+    item.quantity = quantity;
+    updateCart();
+  }
+}
+
+// Update Cart
+function updateCart() {
+  updateCartCount();
+  updateCartDisplay();
+}
+
+// Update Cart Count
+function updateCartCount() {
+  const total = cart.reduce((sum, item) => sum + item.quantity, 0);
+  cartCount.textContent = total;
+}
+
+// Update Cart Display
+function updateCartDisplay() {
+  if (cart.length === 0) {
+    cartBody.innerHTML = "<p class='empty-message'>Tu carrito está vacío</p>";
+    cartFooter.style.display = "none";
+    return;
+  }
+
+  // Render cart items
+  cartBody.innerHTML = cart
+    .map((item) => {
+      const itemPrice = item.price ? item.price : null;
+      const itemTotal = itemPrice ? itemPrice * item.quantity : null;
+
+      return `
+        <div class="cart-item">
+          <div class="cart-item-info">
+            <div class="cart-item-name">${item.name}</div>
+            ${
+              itemPrice
+                ? `
+              <div class="cart-item-price">
+                $${itemPrice.toLocaleString("es-CO")}
+                ${itemTotal && itemTotal !== itemPrice ? `= $${itemTotal.toLocaleString("es-CO")}` : ""}
+              </div>
+            `
+                : ""
+            }
+            <div class="quantity-controls">
+              <button class="quantity-btn" onclick="updateQuantity(${item.id}, ${item.quantity - 1})">−</button>
+              <span class="quantity-display">${item.quantity}</span>
+              <button class="quantity-btn" onclick="updateQuantity(${item.id}, ${item.quantity + 1})">+</button>
+            </div>
+          </div>
+          <button class="remove-btn" onclick="removeFromCart(${item.id})">✕</button>
+        </div>
+      `;
+    })
+    .join("");
+
+  // Calculate totals
+  const totalPrice = cart.reduce((sum, item) => {
+    const price = item.price || 0;
+    return sum + price * item.quantity;
+  }, 0);
+
+  // Update footer
+  const subtotalEl = document.getElementById("subtotal");
+  const totalPriceEl = document.getElementById("totalPrice");
+
+  if (totalPrice > 0) {
+    subtotalEl.textContent = `$${totalPrice.toLocaleString("es-CO")}`;
+    totalPriceEl.textContent = `$${totalPrice.toLocaleString("es-CO")}`;
+  } else {
+    subtotalEl.textContent = "Consultar";
+    totalPriceEl.textContent = "Consultar";
+  }
+
+  cartFooter.style.display = "block";
+}
+
+// Show Notification
 function showNotification(message) {
-  const notification = document.getElementById("notification");
   notification.textContent = message;
   notification.classList.add("show");
 
@@ -105,81 +287,20 @@ function showNotification(message) {
   }, 3000);
 }
 
-function updateCart() {
-  updateCartCount();
-  updateCartDisplay();
-}
-
-function updateCartCount() {
-  const total = cart.reduce((sum, item) => sum + item.quantity, 0);
-  document.getElementById("cartCount").textContent = total;
-}
-
-function removeFromCart(serviceId) {
-  cart = cart.filter((item) => item.id !== serviceId);
-  updateCart();
-}
-
-function updateQuantity(serviceId, quantity) {
-  const item = cart.find((item) => item.id === serviceId);
-  if (item) {
-    if (quantity <= 0) {
-      removeFromCart(serviceId);
-    } else {
-      item.quantity = quantity;
-      updateCart();
-    }
-  }
-}
-
-function updateCartDisplay() {
-  const cartBody = document.getElementById("cartBody");
-  const cartFooter = document.getElementById("cartFooter");
-
-  if (cart.length === 0) {
-    cartBody.innerHTML = '<p class="cart-empty">Tu carrito está vacío</p>';
-    cartFooter.style.display = "none";
-    return;
-  }
-
-  // Render cart items
-  cartBody.innerHTML = cart.map((item) => `
-    <div class="cart-item">
-      <div class="cart-item-icon">
-        <img src="${item.image}" alt="${item.name}" onerror="this.style.display='none'">
-      </div>
-      <div class="cart-item-info">
-        <div class="cart-item-name">${item.name}</div>
-        <div class="cart-item-price">$${item.price}</div>
-        <div class="quantity-controls">
-          <button class="quantity-btn" onclick="updateQuantity(${item.id}, ${item.quantity - 1})">−</button>
-          <span class="quantity-display">${item.quantity}</span>
-          <button class="quantity-btn" onclick="updateQuantity(${item.id}, ${item.quantity + 1})">+</button>
-        </div>
-      </div>
-      <button class="remove-btn" onclick="removeFromCart(${item.id})">✕</button>
-    </div>
-  `).join("");
-
-  // Calculate totals
-  const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const tax = 0;
-  const total = subtotal + tax;
-
-  // Render footer
-  document.getElementById("subtotal").textContent = `$${subtotal.toFixed(2)}`;
-  document.getElementById("totalPrice").textContent = `$${total.toFixed(2)}`;
-  cartFooter.style.display = "block";
-}
-
+// Toggle Cart
 function toggleCart() {
-  const cartModal = document.getElementById("cartModal");
-  const cartOverlay = document.getElementById("cartOverlay");
+  const isActive = cartModal.classList.contains("active");
 
-  cartModal.classList.toggle("active");
-  cartOverlay.classList.toggle("active");
+  if (isActive) {
+    cartModal.classList.remove("active");
+    cartOverlay.classList.remove("active");
+  } else {
+    cartModal.classList.add("active");
+    cartOverlay.classList.add("active");
+  }
 }
 
+// WhatsApp Payment
 function payWhatsApp() {
   if (cart.length === 0) {
     alert("El carrito está vacío");
@@ -187,31 +308,62 @@ function payWhatsApp() {
   }
 
   const itemsList = cart
-    .map((item) => `${item.name} x${item.quantity} - $${(item.price * item.quantity).toFixed(2)}`)
+    .map((item) => {
+      const quantity = `x${item.quantity}`;
+      const price = item.price
+        ? ` - $${(item.price * item.quantity).toLocaleString("es-CO")}`
+        : "";
+      return `${item.name} ${quantity}${price}`;
+    })
     .join("%0A");
 
-  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const message = `Hola! Me gustaría contratar los siguientes servicios:%0A%0A${itemsList}%0A%0ATotal: $${total.toFixed(2)}`;
+  const totalPrice = cart.reduce((sum, item) => {
+    const price = item.price || 0;
+    return sum + price * item.quantity;
+  }, 0);
 
-  const whatsappNumber = "1234567890";
+  const totalPriceStr =
+    totalPrice > 0
+      ? `%0A%0ATotal: $${totalPrice.toLocaleString("es-CO")}`
+      : "";
+
+  const message = `Hola! Me gustaría contratar los siguientes servicios/productos:%0A%0A${itemsList}${totalPriceStr}%0A%0AAgradezco tu atención.`;
+  const whatsappNumber = "573193036362";
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
 
   window.open(whatsappUrl, "_blank");
 }
 
+// QR Payment
 function payQR() {
   if (cart.length === 0) {
     alert("El carrito está vacío");
     return;
   }
 
-  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  alert(
-    `Código QR para pago\n\nMonto Total: $${total.toFixed(2)}\n\nPor favor escanea el código QR con tu app de pago para completar la transacción.`
-  );
+  toggleQRModal();
 }
 
-// Initialize the app
-document.addEventListener("DOMContentLoaded", () => {
-  renderServices();
-});
+// Toggle QR Modal
+function toggleQRModal() {
+  const isActive = qrModal.classList.contains("active");
+
+  if (isActive) {
+    qrModal.classList.remove("active");
+    qrOverlay.classList.remove("active");
+  } else {
+    qrModal.classList.add("active");
+    qrOverlay.classList.add("active");
+  }
+}
+
+// Event Listeners
+function setupEventListeners() {
+  cartBtn.addEventListener("click", toggleCart);
+  closeCartBtn.addEventListener("click", toggleCart);
+  cartOverlay.addEventListener("click", toggleCart);
+  whatsappBtn.addEventListener("click", payWhatsApp);
+  qrBtn.addEventListener("click", payQR);
+  closeQrBtn.addEventListener("click", toggleQRModal);
+  qrOverlay.addEventListener("click", toggleQRModal);
+}
