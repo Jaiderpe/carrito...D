@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jaziz - Servicios Profesionales de Control de Plagas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Animated Background -->
+  <div class="bg-container">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-content">
+        <a href="https://jazizbiologico.com/" class="back-btn" title="Volver al sitio principal">
+          <span>←</span>
+          Volver
+        </a>
+        <div class="logo-section">
+          <img src="https://cdn.builder.io/api/v1/image/assets%2F0344751af8484f15a94dce1090da045c%2Fda7a6dc1167d44278e45855e40683cc1?format=webp&width=800" alt="Jaziz Logo" class="logo">
+          <h1>Jaziz</h1>
+        </div>
+        <button class="cart-btn" onclick="toggleCart()">
+          <span>🛒</span>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <h2>Servicios Profesionales de Control de Plagas</h2>
+      <p>Protege tu hogar y negocio con nuestros servicios de control de plagas de calidad</p>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section">
+      <div class="services-grid" id="servicesGrid"></div>
+    </section>
+  </div>
+
+  <!-- Notification Toast -->
+  <div class="notification" id="notification"></div>
+
+  <!-- Cart Modal Overlay -->
+  <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+
+  <!-- Cart Modal -->
+  <div class="cart-modal" id="cartModal">
+    <!-- Cart Header -->
+    <div class="cart-header">
+      <h2>Carrito de Compras</h2>
+      <button class="close-btn" onclick="toggleCart()">✕</button>
+    </div>
+
+    <!-- Cart Body -->
+    <div class="cart-body" id="cartBody">
+      <p class="cart-empty">Tu carrito está vacío</p>
+    </div>
+
+    <!-- Cart Footer -->
+    <div class="cart-footer" id="cartFooter" style="display: none;">
+      <div class="cart-summary">
+        <div class="summary-row">
+          <span>Subtotal:</span>
+          <span id="subtotal">$0.00</span>
+        </div>
+        <div class="summary-row">
+          <span>Impuestos:</span>
+          <span>$0.00</span>
+        </div>
+        <div class="summary-row total">
+          <span>Total:</span>
+          <span id="totalPrice">$0.00</span>
+        </div>
+      </div>
+      <div class="payment-methods">
+        <button class="payment-btn whatsapp" onclick="payWhatsApp()">
+          <span>💬</span>
+          WhatsApp
+        </button>
+        <button class="payment-btn qr" onclick="payQR()">
+          <span>📱</span>
+          Código QR
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/scrit.js"></script>
+</body>
+</html>
