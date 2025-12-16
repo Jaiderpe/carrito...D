@@ -14,7 +14,7 @@ const services = [
       "Mosquitos",
     ],
     image:
-      "https://images.unsplash.com/photo-1626314408456-5edc1ad76f0f?w=400&h=400&fit=crop",
+      "https://tse1.mm.bing.net/th/id/OIP.eLvyt9dunw9zhVE8oo2uCQAAAA?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3",
     type: "service",
   },
   {
@@ -24,7 +24,7 @@ const services = [
       "Eliminación de roedores y plagas con métodos profesionales y seguros",
     options: ["Roedor doméstico", "Rata de tejado", "Rata de drenajes"],
     image:
-      "https://images.unsplash.com/photo-1585509944149-53fc0a4a6d7e?w=400&h=400&fit=crop",
+      "https://cdn.shopify.com/s/files/1/0760/7087/9571/files/eliminacion-de-roedores-e-insectos-_2_1024x1024.webp?v=1694024338",
     type: "service",
   },
   {
@@ -38,7 +38,7 @@ const services = [
       "Eliminación de virus y levaduras",
     ],
     image:
-      "https://images.unsplash.com/photo-1584308666744-24d5f15714ae?w=400&h=400&fit=crop",
+      "https://tse2.mm.bing.net/th/id/OIP.c1_3-5FVrR_Bjae1gbG94QHaFN?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3",
     type: "service",
   },
 ];
@@ -52,7 +52,7 @@ const products = [
     presentation: "500 ml",
     price: 35000,
     image:
-      "https://images.unsplash.com/photo-1584262173688-82c6cb5e2a27?w=400&h=400&fit=crop",
+      "https://tse3.mm.bing.net/th/id/OIP.QAVJY8EfR1TwirlhHQR4XQHaEK?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3",
     type: "product",
   },
   {
@@ -63,7 +63,7 @@ const products = [
     presentation: "500 ml",
     price: 25000,
     image:
-      "https://images.unsplash.com/photo-1616763355603-ba4f8a466ae6?w=400&h=400&fit=crop",
+      "https://tse3.mm.bing.net/th/id/OIP.t-oYfM586lIBKnU4S6e9JAHaEP?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3",
     type: "product",
   },
   {
@@ -72,7 +72,7 @@ const products = [
     description:
       "Sistema de detección electrónica de roedores para monitoreo permanente",
     image:
-      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=400&h=400&fit=crop",
+      "https://tse4.mm.bing.net/th/id/OIP.nS3G9WMO6MeQ57h4NsALlAHaEl?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3",
     type: "product",
   },
 ];
@@ -97,8 +97,40 @@ const qrModal = document.getElementById("qrModal");
 const closeQrBtn = document.getElementById("closeQrBtn");
 const qrOverlay = document.getElementById("qrOverlay");
 
+// Dark Mode Toggle
+function initDarkMode() {
+  const themeToggle = document.getElementById("themeToggle");
+  const savedTheme = localStorage.getItem("theme") || "light";
+
+  document.body.className = savedTheme + "-mode";
+  updateThemeIcons();
+
+  themeToggle.addEventListener("click", () => {
+    const currentMode = document.body.className;
+    const newMode = currentMode === "light-mode" ? "dark-mode" : "light-mode";
+    document.body.className = newMode;
+    localStorage.setItem("theme", newMode.replace("-mode", ""));
+    updateThemeIcons();
+  });
+}
+
+function updateThemeIcons() {
+  const sunIcon = document.querySelector(".sun-icon");
+  const moonIcon = document.querySelector(".moon-icon");
+  const isDarkMode = document.body.className === "dark-mode";
+
+  if (isDarkMode) {
+    sunIcon.style.display = "none";
+    moonIcon.style.display = "block";
+  } else {
+    sunIcon.style.display = "block";
+    moonIcon.style.display = "none";
+  }
+}
+
 // Initialize App
 document.addEventListener("DOMContentLoaded", () => {
+  initDarkMode();
   renderServices();
   renderProducts();
   setupEventListeners();
