@@ -2,9 +2,9 @@
 const services = [
   {
     id: 1,
-    name: "Desinsectación",
+    name: "Dorinsectación",
     description:
-      "Control completo de plagas de insectos - Cucarachas, hormigas, chinches, moscas, zancudos y mosquitos",
+      "Prevención integrada de plagas ",
     options: [
       "Cucarachas",
       "Hormigas",
@@ -44,6 +44,15 @@ const services = [
 ];
 
 const products = [
+   {
+    id: 103,
+    name: "Jaziz Smart",
+    description:
+      "Sistema de detección electrónica de roedores para monitoreo permanente",
+    image:
+      "https://tse4.mm.bing.net/th/id/OIP.nS3G9WMO6MeQ57h4NsALlAHaEl?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3",
+    type: "product",
+  },
   {
     id: 101,
     name: "Polaryn",
@@ -66,15 +75,7 @@ const products = [
       "https://tse3.mm.bing.net/th/id/OIP.t-oYfM586lIBKnU4S6e9JAHaEP?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3",
     type: "product",
   },
-  {
-    id: 103,
-    name: "Jaziz Smart",
-    description:
-      "Sistema de detección electrónica de roedores para monitoreo permanente",
-    image:
-      "https://tse4.mm.bing.net/th/id/OIP.nS3G9WMO6MeQ57h4NsALlAHaEl?cb=ucfimg2&ucfimg=1&rs=1&pid=ImgDetMain&o=7&rm=3",
-    type: "product",
-  },
+ 
 ];
 
 // Cart Management

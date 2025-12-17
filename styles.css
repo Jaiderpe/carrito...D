@@ -547,7 +547,7 @@ body.dark-mode .card-features {
 
 .card-features li:before {
   content: "•";
-  color: #0891b2;
+  color: #12ff17;
   font-weight: bold;
   font-size: 14px;
 }
