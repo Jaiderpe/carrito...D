@@ -142,7 +142,7 @@ function renderProducts() {
                         <p class="price-label">Precio</p>
                         ${product.price 
                             ? `<p class="price-value">$${product.price.toLocaleString("es-CO")}</p>` 
-                            : `<p class="price-consult"> A consultar</p>`
+                            : `<p class="price-consult">Consultar</p>`
                         }
                     </div>
                     <button class="add-btn" onclick="addToCart(${product.id}, 'product')">
