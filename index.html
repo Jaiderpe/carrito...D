@@ -1,29 +1,27 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jaziz - Servicios de Control de Plagas</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jaziz - Servicios Profesionales de Control de Plagas</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Notification -->
-    <div id="notification" class="notification"></div>
-
     <!-- Header -->
     <header class="header">
         <div class="header-content">
             <div class="logo-section">
-          <a href="https://jazizbiologico.com/" class="back-button" title="Volver a Jaziz">←</a>
-          <img src="https://cdn.builder.io/api/v1/image/assets%2F0344751af8484f15a94dce1090da045c%2Fda7a6dc1167d44278e45855e40683cc1?format=webp&width=800" alt="Jaziz Logo" class="logo">
-          <h1 class="logo-text">Jaziz</h1>
-        </div>
+                <button class="back-button" id="backBtn" title="Back to Jaziz">←</button>
+                <h1 class="logo-text">Jaziz</h1>
+            </div>
+
             <nav class="nav">
-                <a href="#servicios">Servicios</a>
-                <a href="#productos">Productos</a>
+                <button class="nav-link" id="serviciosNav">Servicios</button>
+                <button class="nav-link" id="productosNav">Productos</button>
             </nav>
+
             <div class="header-actions">
-                <button class="theme-toggle" id="themeToggle">🌙</button>
+                <button class="theme-toggle" id="themeToggle" title="Toggle dark mode">🌙</button>
                 <button class="cart-btn" id="cartBtn">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="9" cy="21" r="1"></circle>
@@ -46,30 +44,30 @@
             </p>
         </section>
 
-        <!-- Servicios Section -->
-        <section id="servicios" class="section">
+        <!-- Services Section -->
+        <section class="section" id="servicesSection">
             <h2 class="section-title">Servicios</h2>
-            <div id="servicesGrid" class="grid"></div>
+            <div class="grid" id="servicesGrid"></div>
         </section>
 
-        <!-- Productos Section -->
-        <section id="productos" class="section">
+        <!-- Products Section -->
+        <section class="section" id="productsSection">
             <h2 class="section-title">Productos</h2>
-            <div id="productsGrid" class="grid"></div>
+            <div class="grid" id="productsGrid"></div>
         </section>
     </main>
 
     <!-- Cart Modal -->
-    <div id="cartOverlay" class="modal-overlay"></div>
-    <div id="cartModal" class="modal">
+    <div class="modal-overlay" id="cartOverlay"></div>
+    <div class="modal" id="cartModal">
         <div class="modal-header">
             <h2>Carrito de Compras</h2>
             <button class="close-btn" id="closeCartBtn">✕</button>
         </div>
-        <div id="cartBody" class="modal-body">
+        <div class="modal-body" id="cartBody">
             <div class="empty-message">Tu carrito está vacío</div>
         </div>
-        <div id="cartFooter" class="modal-footer" style="display: none;">
+        <div class="modal-footer" id="cartFooter" style="display: none;">
             <div class="cart-summary">
                 <div class="summary-row">
                     <span>Subtotal:</span>
@@ -92,23 +90,37 @@
     </div>
 
     <!-- QR Modal -->
-    <div id="qrOverlay" class="modal-overlay"></div>
-    <div id="qrModal" class="modal">
+    <div class="modal-overlay" id="qrOverlay"></div>
+    <div class="modal" id="qrModal">
         <div class="modal-header">
             <h2>Paga aquí</h2>
             <button class="close-btn" id="closeQrBtn">✕</button>
         </div>
         <div class="modal-body">
-            <p class="qr-help">Fácil y al instante desde la app de tu banco</p>
-            <div class="qr-container">
-                <img src="https://cdn.builder.io/api/v1/image/assets%2F6bc2a49a64fa45b6aecd6ff309e6e801%2Fe358c0f243be4e8db8dd32fedbea7c77?format=webp&width=800" alt="QR Code Jaziz" class="qr-image">
+            <div class="qr-title">Fácil y al instante desde la app de tu banco</div>
+            <div class="qr-placeholder">
+                <img src="https://cdn.builder.io/api/v1/image/assets%2F6bc2a49a64fa45b6aecd6ff309e6e801%2Fe358c0f243be4e8db8dd32fedbea7c77?format=webp&width=800" alt="QR Code" style="width: 100%; height: 100%; object-fit: contain;">
             </div>
-            <div class="qr-code-info">
-                <p class="qr-code-label">Llave: <strong>0090936359</strong></p>
-            </div>
-            <button class="add-btn" id="closeQrBtnFooter">Cerrar</button>
+            <div class="qr-help">Llave: 0090936359</div>
+        </div>
+        <div class="modal-footer" style="text-align: center;">
+            <button class="payment-btn qr" id="closeQrBtnFooter" style="width: 100%;">Cerrar</button>
         </div>
     </div>
+
+    <!-- Confirmation Dialog -->
+    <div class="confirmation-overlay" id="confirmationOverlay"></div>
+    <div class="confirmation-dialog" id="confirmationDialog">
+        <h3>¿Estás seguro?</h3>
+        <p>¿Deseas finalizar el proceso y salir?</p>
+        <div class="confirmation-buttons">
+            <button class="confirmation-btn cancel" id="cancelBtn">Quedarse</button>
+            <button class="confirmation-btn confirm" id="confirmBtn">Salir</button>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification"></div>
 
     <script src="scrit.js"></script>
 </body>
