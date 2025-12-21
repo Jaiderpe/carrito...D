@@ -122,16 +122,6 @@ body.dark-mode .header {
     flex-shrink: 0;
     line-height: 1;
 }
-.back-button {
-    position: relative;
-}
-
-.back-button span,
-.back-button i {
-    position: relative;
-    top: -1px; /* prueba -1px o -2px */
-}
-
 
 .back-button:hover {
     background: #16a34a;
