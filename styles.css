@@ -136,6 +136,12 @@ body.dark-mode .back-button {
 body.dark-mode .back-button:hover {
     background: #cccccc;
 }
+.logo {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
 
 .logo-text {
     font-size: 28px;
@@ -416,7 +422,7 @@ body.dark-mode .card-title {
 }
 
 .card-presentation {
-    color: var(--primary);
+    color: #1a1a1a;
     font-size: 14px;
     font-weight: 600;
     margin-bottom: 10px;
@@ -425,6 +431,7 @@ body.dark-mode .card-title {
 
 .card-description {
     font-size: 14px;
+    text-align: justify;
     margin-bottom: 15px;
     flex: 1;
     font-weight: 500;
@@ -484,7 +491,7 @@ body.dark-mode .card-footer {
 
 .price-label {
     font-size: 11px;
-    color: #6b7280;
+    color: #000000;
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 900;
@@ -498,7 +505,7 @@ body.dark-mode .price-label {
 .price-value {
     font-size: 24px;
     font-weight: bold;
-    color: var(--primary);
+    color: #000000;
     margin-top: 4px;
     text-align: center;
 }
