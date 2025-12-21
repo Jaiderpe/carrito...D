@@ -108,23 +108,34 @@ body.dark-mode .header {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
+    width: 38px;
+    height: 40px;
     background: #22c55e;
     color: white;
     border: none;
-    border-radius: 50%;
-    font-size: 18px;
+    border-radius: 60%;
+    font-size: 28px;
     font-weight: bold;
     text-decoration: none;
     cursor: pointer;
     transition: all 0.3s ease;
     flex-shrink: 0;
+    line-height: 1;
 }
+.back-button {
+    position: relative;
+}
+
+.back-button span,
+.back-button i {
+    position: relative;
+    top: -1px; /* prueba -1px o -2px */
+}
+
 
 .back-button:hover {
     background: #16a34a;
-    transform: scale(1.1);
+    transform: scale(1.15);
 }
 
 body.dark-mode .back-button {
@@ -149,7 +160,7 @@ body.dark-mode .logo {
 
 .logo-text {
     font-size: 28px;
-    color: var(--primary);
+    color: #22c55e;
     font-weight: 900;
     margin: 0;
     letter-spacing: -0.5px;
@@ -433,10 +444,12 @@ body.dark-mode .card:hover {
     font-weight: 800;
     margin-bottom: 10px;
     color: var(--text-light);
+    text-align: center;
 }
 
 body.dark-mode .card-title {
     color: var(--text-dark);
+    text-align: center;
 }
 
 .card-presentation {
