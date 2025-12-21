@@ -83,6 +83,13 @@ body.dark-mode .header {
     align-items: center;
     position: relative;
     z-index: 2;
+    gap: 10px;
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        padding: 12px 15px;
+    }
 }
 
 .logo-section {
@@ -101,7 +108,7 @@ body.dark-mode .header {
     color: white;
     border: none;
     border-radius: 50%;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: bold;
     text-decoration: none;
     cursor: pointer;
@@ -110,9 +117,10 @@ body.dark-mode .header {
 
 @media (max-width: 768px) {
     .back-button {
-        width: 44px;
-        height: 44px;
-        font-size: 22px;
+        width: 50px;
+        height: 50px;
+        font-size: 28px;
+        margin-right: 8px;
     }
 }
 
@@ -131,6 +139,12 @@ body.dark-mode .back-button:hover {
     font-weight: 900;
     margin: 0;
     letter-spacing: -0.5px;
+}
+
+@media (max-width: 768px) {
+    .logo-text {
+        font-size: 20px;
+    }
 }
 
 .nav {
