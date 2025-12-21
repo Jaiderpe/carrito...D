@@ -121,6 +121,7 @@ body.dark-mode .header {
         height: 50px;
         font-size: 35px;
         margin-right: 8px;
+        transform: translateY(-2px);
     }
 }
 
