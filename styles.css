@@ -124,7 +124,7 @@ body.dark-mode .header {
         
     }
     .back-button .arrow {
-    transform: translateY(-2px); /* solo sube la flecha */
+    transform: translateY(-4px); /* solo sube la flecha */
 }
 }
 
